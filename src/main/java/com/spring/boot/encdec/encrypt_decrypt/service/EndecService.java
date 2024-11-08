@@ -23,13 +23,14 @@ public class EndecService {
         this.secretKey = keyGenerator.generateKey();  // Generate the key
     }
 
+    //To Encrypt username
     public String encrypt(String username) throws Exception {
         Cipher cipher = Cipher.getInstance(TRANSFORMATION);
         cipher.init(Cipher.ENCRYPT_MODE, secretKey);
         byte[] encryptedBytes = cipher.doFinal(username.getBytes());
         return Base64.getEncoder().encodeToString(encryptedBytes);
     }
-
+    //To Decrypt username
     public String decrypt(String username) throws Exception {
         byte[]encryptedBytes=Base64.getDecoder().decode(username);
         Cipher cipher=Cipher.getInstance(TRANSFORMATION);
